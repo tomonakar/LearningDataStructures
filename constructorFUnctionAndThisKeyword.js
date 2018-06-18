@@ -11,9 +11,18 @@ console.log(user1)
 console.log(user2)
 
 // prototypeにemailDomainを追加
-User.prototype.emailDomain = '@faicebook.com'
+User.prototype.emailDomain = '@facebook.com'
 
 // prototypeにアクセス
 console.log(user1.__proto__)
 console.log(user2.__proto__)
 console.log(user2.emailDomain)
+
+
+// prototypeにメソッドを追加
+User.prototype.getEmailAddress = function () {
+  return this.firstName + this.lastName + this.emailDomain
+}
+
+console.log(user1.getEmailAddress())
+console.log(user2.getEmailAddress())
