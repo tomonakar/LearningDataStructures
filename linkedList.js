@@ -48,15 +48,30 @@ LinkedList.prototype.search = function(searchValue) {
     currentNode = currentNode.next
   }
   return null
+}
 
+LinkedList.prototype.indexOf = function(value) {
+  let indexes = []
+  let currentIndex = 0
+  let currentNode = this.head
+
+  while(currentNode) {
+    if (currentNode.value === value) {
+      indexes.push(currentIndex)
+    }
+    currentNode = currentNode.next
+    currentIndex++
+  }
+  return indexes
 }
 
 const ll = new LinkedList()
-ll.addToHead(123)
-ll.addToHead(70)
-ll.addToHead('hello')
-ll.addToTail(19)
-ll.addToTail('world')
-ll.addToTail(20)
+ll.addToTail(1)
+ll.addToTail(5)
+ll.addToTail(3)
+ll.addToTail(5)
+ll.addToTail(8)
+ll.addToTail(7)
+ll.addToTail(5)
 
-console.log(ll.search('hello'))
+console.log(ll.indexOf(5))
