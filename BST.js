@@ -28,10 +28,12 @@ BST.prototype.contains = function(value) {
   }
 }
 
-BST.prototype.depthFirstTraversal = function(iteratorFunc) {
-  if (this.left) this.left.depthFirstTraversal(iteratorFunc)
-  iteratorFunc(this.value)
-  if (this.right) this.right.depthFirstTraversal(iteratorFunc)
+BST.prototype.depthFirstTraversal = function(iteratorFunc, order) {
+  if (order === 'pre-order') iteratorFunc(this.value)
+  if (this.left) this.left.depthFirstTraversal(iteratorFunc, order)
+  if (order === 'in-order') iteratorFunc(this.value)
+  if (this.right) this.right.depthFirstTraversal(iteratorFunc, order)
+  if (order === 'post-order') iteratorFunc(this.value)
 }
 
 var bst = new BST(50)
@@ -46,7 +48,7 @@ bst.insert(85)
 bst.insert(105)
 bst.insert(10)
 
-bst.depthFirstTraversal(log)
+bst.depthFirstTraversal(log, 'in-order')
 
 function log(value) {
   console.log(value)
