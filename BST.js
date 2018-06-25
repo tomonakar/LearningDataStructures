@@ -43,9 +43,19 @@ BST.prototype.breathFirstTraversal = function(iteratorFunc) {
     iteratorFunc(treeNode)
     if (treeNode.left) queue.push(treeNode.left)
     if (treeNode.right) queue.push(treeNode.right)
-
   }
 }
+
+BST.prototype.getMinVal = function() {
+  if (this.left) return this.left.getMinVal()
+  else return this.value
+}
+
+BST.prototype.getMaxVal = function() {
+  if (this.right) return this.right.getMaxVal()
+  else return this.value
+}
+
 
 var bst = new BST(50)
 bst.insert(30)
@@ -64,4 +74,5 @@ function log(node) {
   console.log(node.value)
 }
 
-bst.breathFirstTraversal(log)
+console.log('Min:', bst.getMinVal())
+console.log('Max:', bst.getMaxVal())
