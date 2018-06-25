@@ -19,7 +19,7 @@ HashTable.prototype.hash = function(key) {
 }
 
 HashTable.prototype.insert = function(key, value) {
-  let index = this.hash(key)
+  const index = this.hash(key)
   if (!this.buckets[index]) {
     this.buckets[index] = new HashNode(key,value)
   }
@@ -39,9 +39,23 @@ HashTable.prototype.insert = function(key, value) {
   }
 }
 
+HashTable.prototype.get = function(key) {
+  const index = this.hash(key)
+  if (!this.buckets[index]) return null
+  else {
+    const currentNode = this.buckets[index]
+    while (currentNode) {
+      if (currentNode.key === key) return currentNode.value
+      currentNode = currentNode.next
+    }
+    return null
+  }
+}
+
 var myHT = new HashTable(30)
 myHT.insert('tomo', 'tomo@gmail.com')
 myHT.insert('gam', 'gam@gmail.com')
 myHT.insert('tomo', 'tomo@yahoo.com')
 myHT.insert('tomo', 'tomohoge@yahoo.com')
-console.log(myHT)
+
+console.log(myHT.get('tomo'))
