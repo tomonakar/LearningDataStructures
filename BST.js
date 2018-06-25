@@ -26,7 +26,12 @@ BST.prototype.contains = function(value) {
     if (!this.right) return false
     else return this.right.contains(value)
   }
+}
 
+BST.prototype.depthFirstTraversal = function(iteratorFunc) {
+  if (this.left) this.left.depthFirstTraversal(iteratorFunc)
+  iteratorFunc(this.value)
+  if (this.right) this.right.depthFirstTraversal(iteratorFunc)
 }
 
 var bst = new BST(50)
@@ -36,10 +41,13 @@ bst.insert(100)
 bst.insert(60)
 bst.insert(59)
 bst.insert(20)
-bst.insert(45)
 bst.insert(35)
 bst.insert(85)
 bst.insert(105)
 bst.insert(10)
 
-console.log(bst.contains(21))
+bst.depthFirstTraversal(log)
+
+function log(value) {
+  console.log(value)
+}
