@@ -52,10 +52,26 @@ HashTable.prototype.get = function(key) {
   }
 }
 
+HashTable.prototype.retrieveAll = function() {
+  let allNodes = []
+  for (let i = 0; i < this.numBuckets; i++) {
+    let currentNode = this.buckets[i]
+    while(currentNode) {
+      allNodes.push(currentNode)
+      currentNode = currentNode.next
+    }
+  }
+  return allNodes
+}
+
 var myHT = new HashTable(30)
 myHT.insert('tomo', 'tomo@gmail.com')
 myHT.insert('gam', 'gam@gmail.com')
 myHT.insert('tomo', 'tomo@yahoo.com')
 myHT.insert('tomo', 'tomohoge@yahoo.com')
+myHT.insert('foo', 'foo@facebook.com')
+myHT.insert('hoge', 'hoge@gmail.ocm')
 
-console.log(myHT.get('tomo'))
+console.log(myHT.retrieveAll())
+console.log('#######################################################')
+console.log(myHT)
